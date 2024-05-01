@@ -22,21 +22,34 @@ class AnimalResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
+            ->columns(3)
             ->schema([
-                Forms\Components\TextInput::make('name')->required(true),
-                Forms\Components\Textarea::make('description')->rows(3),
-                Forms\Components\TextInput::make('breed')->required(true),
-                Forms\Components\TextInput::make('species')->required(true),
-                Forms\Components\Select::make('sex')->options([
-                    Animal::SEX_FEMALE => 'Hembra',
-                    Animal::SEX_MALE => 'Macho',
-                ]),
-                Forms\Components\Select::make('status')->options([
+                Forms\Components\TextInput::make('name')
+                    ->label('Nombre')
+                    ->columnSpan(2)
+                    ->required(true),
+                Forms\Components\Select::make('status')->required(true)->label('Estado')->options([
                     Animal::STATUS_REGISTERED => 'Registrado',
                     Animal::STATUS_READY => 'Listo para adopción',
                     Animal::STATUS_ADOPTED => 'Adoptado',
                 ]),
-                Forms\Components\Checkbox::make('urgent'),
+                Forms\Components\Textarea::make('description')
+                    ->label('Descripción')
+                    ->columnSpanFull()
+                    ->rows(3),
+                Forms\Components\TextInput::make('breed')
+                    ->label('Raza')
+                    ->required(true),
+                Forms\Components\TextInput::make('species')
+                    ->label('Especie')
+                    ->columnSpan(.5)
+                    ->required(true),
+                Forms\Components\Select::make('sex')->required(true)->label('Sexo')->options([
+                    Animal::SEX_FEMALE => 'Hembra',
+                    Animal::SEX_MALE => 'Macho',
+                ]),
+              
+                Forms\Components\Checkbox::make('urgent')->label('Urgente'),
             ]);
     }
 
