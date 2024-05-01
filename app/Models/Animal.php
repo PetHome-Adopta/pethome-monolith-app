@@ -25,6 +25,12 @@ class Animal extends Model
         'species',
         'sex',
         'status',
-        'urgent'
+        'urgent',
+        'user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

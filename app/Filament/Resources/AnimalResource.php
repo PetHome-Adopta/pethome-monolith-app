@@ -48,7 +48,6 @@ class AnimalResource extends Resource
                     Animal::SEX_FEMALE => 'Hembra',
                     Animal::SEX_MALE => 'Macho',
                 ]),
-              
                 Forms\Components\Checkbox::make('urgent')->label('Urgente'),
             ]);
     }
